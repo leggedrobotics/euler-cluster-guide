@@ -1,9 +1,21 @@
 ---
 layout: default
 title: Container Workflow
+nav_order: 2
+has_children: false
+permalink: /container-workflow/
 ---
 
-# Container Workflow for Euler Cluster
+# Container Workflow
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 This page provides a detailed, tested workflow for deploying containerized applications on the Euler cluster.
 

@@ -1,27 +1,55 @@
-title: Euler Cluster Guide for Legged Robotics
+title: Euler Cluster Guide
 description: A comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich
-theme: jekyll-theme-minimal
-author: Legged Robotics Lab, ETH Zurich
+baseurl: "/euler-cluster-guide"
+url: "https://leggedrobotics.github.io"
 
-# Navigation
-navigation:
-  - title: Home
-    url: /
-  - title: Container Workflow
-    url: /container-workflow
-  - title: Scripts
-    url: /scripts
-  - title: Troubleshooting
-    url: /troubleshooting
+# Theme
+remote_theme: just-the-docs/just-the-docs@v0.7.0
+color_scheme: light
 
-# GitHub repository
-github:
-  repository_url: https://github.com/leggedrobotics/euler-cluster-guide
-  
-# Analytics (optional)
-google_analytics: 
+# Site settings
+logo: "/assets/images/logo.png"
+search_enabled: true
+search.button: true
+heading_anchors: true
+permalink: pretty
+
+# Aux links for top navigation
+aux_links:
+  "GitHub":
+    - "https://github.com/leggedrobotics/euler-cluster-guide"
+  "RSL Lab":
+    - "https://rsl.ethz.ch"
+
+# Makes Aux links open in a new tab
+aux_links_new_tab: true
+
+# Footer
+footer_content: "Copyright &copy; 2025 Legged Robotics Lab, ETH Zurich. Distributed under the <a href=\"https://github.com/leggedrobotics/euler-cluster-guide/blob/main/LICENSE\">MIT license.</a>"
+
+# Footer last edited timestamp
+last_edit_timestamp: true
+last_edit_time_format: "%b %e %Y at %I:%M %p"
+
+# Back to top
+back_to_top: true
+back_to_top_text: "Back to top"
 
 # Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+
+# Collections for just-the-docs
+collections:
+  # Define collections for your content if needed
+  
+# Navigation Structure
+nav_enabled: true
+nav_sort: case_sensitive
+
+# External links
+nav_external_links:
+  - title: ETH Euler Docs
+    url: https://scicomp.ethz.ch/wiki/Euler
+    hide_icon: false
