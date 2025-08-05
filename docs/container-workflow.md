@@ -359,10 +359,10 @@ ssh euler "cd /cluster/work/rsl/$USER && sbatch job_${VERSION}.sh"
 
 Complete test files for the container workflow:
 
-- **[Dockerfile](scripts/Dockerfile)** - Test Docker image with CUDA support
-- **[hello_cluster.py](scripts/hello_cluster.py)** - Python test script for containers
-- **[test_job_project.sh](scripts/test_job_project.sh)** - Complete container job example
-- **[test_container_extraction.sh](scripts/test_container_extraction.sh)** - Test container extraction timing
+- **[Dockerfile](scripts/container-workflow/Dockerfile)** - Test Docker image with CUDA support
+- **[hello_cluster.py](scripts/container-workflow/hello_cluster.py)** - Python test script for containers
+- **[test_job_project.sh](scripts/container-workflow/test_job_project.sh)** - Complete container job example
+- **[test_container_extraction.sh](scripts/container-workflow/test_container_extraction.sh)** - Test container extraction timing
 
 To test the complete workflow:
 ```bash
