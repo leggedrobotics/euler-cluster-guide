@@ -316,11 +316,12 @@ lquota
 For frequently used containers, consider keeping extracted versions:
 
 ```bash
-# One-time extraction
-tar -xzf container.tar.gz -C /cluster/work/rsl/$USER/containers/extracted/
+# One-time extraction (use project for extracted containers)
+tar -xzf /cluster/work/rsl/$USER/containers/container.tar.gz \
+    -C /cluster/project/rsl/$USER/containers/extracted/
 
 # In job script, just copy
-cp -r /cluster/work/rsl/$USER/containers/extracted/my-app.sif $TMPDIR/
+cp -r /cluster/project/rsl/$USER/containers/extracted/my-app.sif $TMPDIR/
 ```
 
 ### Automated Workflows
