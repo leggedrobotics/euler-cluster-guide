@@ -5,7 +5,7 @@ Welcome to the comprehensive guide for using the Euler HPC cluster at ETH Zurich
 ## 🚀 Quick Navigation
 
 !!! tip "Getting Started"
-    New to Euler? Start with our [Complete Guide](complete-guide/) for detailed instructions on accessing and using the cluster.
+    New to Euler? Start with our [Complete Guide](complete-guide/) for detailed step-by-step instructions on accessing and using the cluster.
 
 !!! example "Container Workflows" 
     Learn how to build, deploy, and run [containerized applications](container-workflow/) using Docker and Singularity on Euler.
@@ -18,280 +18,156 @@ Welcome to the comprehensive guide for using the Euler HPC cluster at ETH Zurich
 
 ---
 
-## 📋 Table of Contents
+## 🎯 Quick Start
 
-1. [Access Requirements](#access-requirements)
-2. [Quick Start SSH Setup](#quick-start-ssh-setup)
-3. [Storage Overview](#storage-overview)
-4. [Basic SLURM Commands](#basic-slurm-commands)
-5. [Container Workflow Summary](#container-workflow-summary)
-6. [Interactive Sessions](#interactive-sessions)
-7. [Support & Resources](#support-resources)
-
----
-
-## ✅ Access Requirements
-
-To get access to the Euler cluster:
-
-1. **Fill out the access form**: [RSL Cluster Access Form](https://forms.gle/UsiGkXUmo9YyNHsH8)
-2. **RSL members**: Directly message Manthan Patel for faster processing
-3. **Access approval**: Twice weekly (Tuesdays and Fridays)
-
-**Prerequisites:**
-- Valid nethz username and password (ETH Zurich credentials)
-- Terminal access (Linux/macOS or Git Bash on Windows)
-- Membership in RSL group (es_hutter)
-
----
-
-## 🔐 Quick Start SSH Setup
-
-### Basic Connection
+### First Time Setup
 ```bash
+# 1. SSH into Euler
 ssh <your_nethz_username>@euler.ethz.ch
-```
 
-### SSH Key Setup (Recommended)
-```bash
-# Generate SSH key
-ssh-keygen -t ed25519 -C "your_email@ethz.ch"
-
-# Copy to Euler
-ssh-copy-id <your_nethz_username>@euler.ethz.ch
-
-# Create SSH config (~/.ssh/config)
-cat >> ~/.ssh/config << EOF
-Host euler
-  HostName euler.ethz.ch
-  User <your_nethz_username>
-  Compression yes
-  ForwardX11 yes
-EOF
-
-# Now connect simply with:
-ssh euler
-```
-
-### Verify Your Access
-```bash
-# Check group membership
+# 2. Verify RSL group membership
 my_share_info
 # Should show: "You are a member of the es_hutter shareholder group"
 
-# Create your directories
+# 3. Create your directories
 mkdir -p /cluster/project/rsl/$USER
 mkdir -p /cluster/work/rsl/$USER
 ```
 
----
-
-## 💾 Storage Overview
-
-| Location | Quota | Files | Purpose | Persistence |
-|----------|-------|-------|---------|-------------|
-| **Home** `/cluster/home/$USER` | 45 GB | 450K | Code, configs | Permanent |
-| **Scratch** `/cluster/scratch/$USER` | 2.5 TB | 1M | Datasets, temp files | Auto-deleted after 15 days |
-| **Project** `/cluster/project/rsl/$USER` | 75 GB | 300K | Conda envs, software | Permanent |
-| **Work** `/cluster/work/rsl/$USER` | 150 GB | 30K | Results, containers | Permanent |
-| **Local** `$TMPDIR` | 800 GB | High | Job runtime data | Deleted after job |
-
-### Check Your Usage
+### Submit Your First Job
 ```bash
-# Home and Scratch
-lquota
+# Create a simple test script
+cat > test_job.sh << 'EOF'
+#!/bin/bash
+#SBATCH --job-name=test
+#SBATCH --time=00:10:00
+#SBATCH --mem=4G
 
-# Project and Work
-(head -n 5 && grep -w $USER) < /cluster/work/rsl/.rsl_user_data_usage.txt
-(head -n 5 && grep -w $USER) < /cluster/project/rsl/.rsl_user_data_usage.txt
+echo "Hello from $(hostname)"
+echo "Job ID: $SLURM_JOB_ID"
+EOF
+
+# Submit it
+sbatch test_job.sh
 ```
 
 ---
 
-## 🖥️ Basic SLURM Commands
+## 📊 Quick Reference
 
-### Submit a Job
+### Storage Locations
+| Location | Quota | Purpose |
+|----------|-------|---------|
+| `/cluster/home/$USER` | 45 GB | Code, configs |
+| `/cluster/scratch/$USER` | 2.5 TB | Datasets (auto-deleted after 15 days) |
+| `/cluster/project/rsl/$USER` | 75 GB | Conda environments |
+| `/cluster/work/rsl/$USER` | 150 GB | Results, containers |
+| `$TMPDIR` | 800 GB | Fast local scratch (per job) |
+
+### Essential Commands
 ```bash
-# Basic job submission
-sbatch my_job.sh
+# Job Management
+sbatch script.sh          # Submit job
+squeue -u $USER          # Check your jobs
+scancel <job_id>         # Cancel job
 
-# Interactive session (2 hours, 8 CPUs, 32GB RAM)
-srun --time=2:00:00 --cpus-per-task=8 --mem=32G --pty bash
+# Interactive Sessions
+srun --pty bash          # Basic session
+srun --gpus=1 --pty bash # GPU session
 
-# GPU interactive session (4 hours, 1 GPU)
-srun --time=4:00:00 --gpus=1 --mem=32G --pty bash
+# Storage Check
+lquota                   # Check home/scratch usage
 ```
 
-### Monitor Jobs
+### GPU Resources
 ```bash
-# Check your jobs
-squeue -u $USER
-
-# Job details
-scontrol show job <job_id>
-
-# Cancel a job
-scancel <job_id>
-
-# Job efficiency (after completion)
-seff <job_id>
+# Request specific GPU types
+#SBATCH --gpus=1                            # Any available GPU
+#SBATCH --gpus=nvidia_geforce_rtx_4090:1    # RTX 4090 (24GB)
+#SBATCH --gpus=nvidia_a100_80gb_pcie:1      # A100 (80GB)
 ```
 
-### Sample GPU Job Script
+---
+
+## 🚀 Common Workflows
+
+### GPU Training Job
 ```bash
 #!/bin/bash
-#SBATCH --job-name=gpu-test
-#SBATCH --output=logs/%j.out
-#SBATCH --error=logs/%j.err
-#SBATCH --time=04:00:00
+#SBATCH --job-name=training
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --tmp=50G
+#SBATCH --time=24:00:00
+#SBATCH --tmp=100G
 
 module load eth_proxy
-
-# Your GPU code here
 python train.py
 ```
 
----
-
-## 📦 Container Workflow Summary
-
-### 1. Build Docker Image
+### Container Workflow
 ```bash
-# Create Dockerfile
-cat > Dockerfile << EOF
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
-RUN apt-get update && apt-get install -y python3-pip
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-COPY . /app
-WORKDIR /app
-CMD ["python3", "train.py"]
-EOF
+# 1. Build locally
+docker build -t myapp:latest .
 
-# Build image
-docker build -t my-ml-app:latest .
+# 2. Convert to Singularity
+apptainer build --sandbox myapp.sif docker-daemon://myapp:latest
+tar -cf myapp.tar myapp.sif
+
+# 3. Transfer & run on Euler
+scp myapp.tar euler:/cluster/work/rsl/$USER/
+# Then use in job script:
+tar -xf /cluster/work/rsl/$USER/myapp.tar -C $TMPDIR
+singularity exec --nv $TMPDIR/myapp.sif python app.py
 ```
 
-### 2. Convert to Singularity
+### Interactive Development
 ```bash
-# Convert Docker to Singularity
-apptainer build --sandbox my-ml-app.sif docker-daemon://my-ml-app:latest
-
-# Create tar for transfer
-tar -cf my-ml-app.tar my-ml-app.sif
-```
-
-### 3. Transfer to Euler
-```bash
-scp my-ml-app.tar euler:/cluster/work/rsl/$USER/containers/
-```
-
-### 4. Run on Euler
-```bash
-#!/bin/bash
-#SBATCH --job-name=container-job
-#SBATCH --gpus=1
-#SBATCH --tmp=100G
-
-# Extract to local scratch (fast!)
-tar -xf /cluster/work/rsl/$USER/containers/my-ml-app.tar -C $TMPDIR
-
-# Run with GPU support
-singularity exec --nv $TMPDIR/my-ml-app.sif python3 /app/train.py
-```
-
-[→ Full Container Workflow Guide](container-workflow/)
-
----
-
-## 🔧 Interactive Sessions
-
-### JupyterHub Access
-- **URL**: [https://jupyter.euler.hpc.ethz.ch](https://jupyter.euler.hpc.ethz.ch)
-- **Login**: Use your nethz credentials
-- **Features**: GPU support, VSCode option, pre-installed libraries
-
-### Quick Interactive Commands
-```bash
-# Basic interactive session
-srun --pty bash
-
-# Development session with GPU
+# JupyterHub: https://jupyter.euler.hpc.ethz.ch
+# Or command line:
 srun --gpus=1 --mem=32G --time=2:00:00 --pty bash
-
-# High memory session
-srun --mem=128G --time=1:00:00 --pty bash
-
-# With local scratch
-srun --tmp=100G --mem=32G --pty bash
 ```
 
 ---
 
-## 🐍 Python Environment Setup
+## 📚 Documentation Structure
 
-### Miniconda Installation
-```bash
-# Install in project directory (more space)
-mkdir -p /cluster/project/rsl/$USER/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -b -p /cluster/project/rsl/$USER/miniconda3
-rm Miniconda3-latest-Linux-x86_64.sh
-
-# Initialize
-/cluster/project/rsl/$USER/miniconda3/bin/conda init bash
-conda config --set auto_activate_base false
-```
-
-### Create Environment
-```bash
-conda create -n ml_env python=3.10
-conda activate ml_env
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-```
+- **[Complete Guide](complete-guide/)** - Comprehensive setup and detailed instructions
+- **[Container Workflow](container-workflow/)** - Full Docker/Singularity workflow with examples
+- **[Scripts Library](scripts/)** - Ready-to-use job scripts and templates
+- **[Troubleshooting](troubleshooting/)** - Solutions to common problems
 
 ---
 
-## 🛠️ Quick Tips
+## 🆘 Getting Help
 
-!!! success "Best Practices"
-    - **Use local scratch** (`$TMPDIR`) for I/O intensive operations
-    - **Request only needed resources** to reduce queue time
-    - **Save work frequently** - interactive sessions can timeout
-    - **Use job arrays** for parameter sweeps
-    - **Load `eth_proxy` module** for internet access
+### Quick Links
+- **Access Form**: [RSL Cluster Access](https://forms.gle/UsiGkXUmo9YyNHsH8)
+- **RSL Contact**: Manthan Patel (patelm@ethz.ch)
+- **ETH IT Support**: [ServiceDesk](https://ethz.ch/services/en/it-services/help.html)
+- **Official Docs**: [Euler Wiki](https://scicomp.ethz.ch/wiki/Euler)
 
-!!! warning "Common Pitfalls"
-    - Don't install conda in home directory (limited inodes)
-    - Don't run jobs on login nodes
+### Prerequisites
+✅ Valid nethz account  
+✅ RSL group membership (es_hutter)  
+✅ Terminal access  
+✅ Basic Linux/SLURM knowledge  
+
+---
+
+## 🎓 Tips for Success
+
+!!! success "Do's"
+    - Use `$TMPDIR` for I/O intensive operations
+    - Request only the resources you need
+    - Use containers for reproducible environments
+    - Save important results to `/cluster/work/rsl/$USER`
+
+!!! warning "Don'ts"
+    - Don't run computations on login nodes
     - Don't exceed storage quotas
-    - Remember scratch data is auto-deleted after 15 days
-
----
-
-## 📞 Support & Resources
-
-### Getting Help
-- **Cluster Issues**: ETH IT ServiceDesk
-- **RSL Access**: Contact Manthan Patel (patelm@ethz.ch)
-- **Guide Issues**: [GitHub Issues](https://github.com/leggedrobotics/euler-cluster-guide/issues)
-
-### Useful Links
-- [Official Euler Documentation](https://scicomp.ethz.ch/wiki/Euler)
-- [Getting Started with GPUs](https://scicomp.ethz.ch/wiki/Getting_started_with_GPUs)
-- [JupyterHub Access](https://jupyter.euler.hpc.ethz.ch)
-- [RSL Lab Homepage](https://rsl.ethz.ch)
-
-### Tested Configuration
-| Component | Version |
-|-----------|---------|
-| **Docker** | 24.0.7 |
-| **Apptainer** | 1.2.5 |
-| **Cluster** | Euler (ETH Zurich) |
-| **Group** | es_hutter (RSL) |
+    - Don't leave interactive sessions idle
+    - Don't store data only in scratch (auto-deleted!)
 
 ---
 
