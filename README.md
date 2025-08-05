@@ -1,6 +1,6 @@
 # RSL Euler Cluster Guide
 
-A comprehensive guide for the Euler HPC cluster at ETH Zurich, specifically tailored for the Robotics Systems Lab (RSL) community.
+A comprehensive guide for the Euler HPC cluster at ETH Zurich by the Robotics Systems Lab.
 
 ## 📚 Documentation
 
