@@ -6,41 +6,43 @@ A comprehensive guide for the Euler HPC cluster at ETH Zurich, specifically tail
 
 The full documentation is available at: https://leggedrobotics.github.io/euler-cluster-guide/
 
-## 📖 What's Included
+## 🎯 Quick Start
 
-This guide covers everything you need to get started with the Euler cluster:
+New to Euler? Start here:
+1. **[Getting Started](https://leggedrobotics.github.io/euler-cluster-guide/getting-started/)** - Access setup and verification
+2. **[Data Management](https://leggedrobotics.github.io/euler-cluster-guide/data-management/)** - Storage locations and quotas
+3. **[Python & ML](https://leggedrobotics.github.io/euler-cluster-guide/python-environments/)** - Miniconda and training workflows
+4. **[Computing](https://leggedrobotics.github.io/euler-cluster-guide/computing-guide/)** - Interactive sessions and batch jobs
+5. **[Containers](https://leggedrobotics.github.io/euler-cluster-guide/container-workflow/)** - Docker/Singularity workflows
 
-- **Access & Setup**: SSH configuration, group membership verification
-- **Storage Management**: Understanding quotas and file systems
-- **Computing Workflows**: Interactive sessions, batch jobs, GPU computing
-- **Container Workflows**: Docker to Singularity conversion and deployment
-- **Best Practices**: Performance optimization and troubleshooting
+## 📚 Additional Resources
 
-## 🚀 Quick Links
-
-- [Complete Guide](https://leggedrobotics.github.io/euler-cluster-guide/complete-guide/) - Full documentation including SSH setup, storage, and computing basics
-- [Container Workflow](https://leggedrobotics.github.io/euler-cluster-guide/container-workflow/) - Detailed guide for containerized applications
-- [Scripts Library](https://leggedrobotics.github.io/euler-cluster-guide/scripts/) - Ready-to-use scripts and examples
-- [Troubleshooting](https://leggedrobotics.github.io/euler-cluster-guide/troubleshooting/) - Common issues and solutions
+- **[Complete Reference Guide](https://leggedrobotics.github.io/euler-cluster-guide/complete-guide/)** - All sections in one document
+- **[Scripts Library](https://leggedrobotics.github.io/euler-cluster-guide/scripts/)** - Ready-to-use SLURM scripts and examples
+- **[Troubleshooting](https://leggedrobotics.github.io/euler-cluster-guide/troubleshooting/)** - Common issues and solutions
 
 ## 📁 Repository Structure
 
 ```
 euler-cluster-guide/
-├── docs/                     # GitHub Pages documentation
-│   ├── index.md             # Homepage
-│   ├── complete-guide.md    # Full Euler guide (SSH, storage, etc.)
-│   ├── container-workflow.md # Container workflow details
-│   ├── scripts.md           # Scripts library
-│   ├── troubleshooting.md   # Common issues and solutions
-│   ├── assets/              # CSS and images
-│   │   └── css/
-│   │       └── style.scss   # Custom styling
-│   └── scripts/             # Test scripts
-│       ├── hello_cluster.py # GPU test script
-│       ├── Dockerfile       # Example container
-│       └── test_job_project.sh # SLURM job script
-└── README.md               # This file
+├── docs/                          # GitHub Pages documentation
+│   ├── index.md                  # Homepage
+│   ├── getting-started.md        # Access and SSH setup
+│   ├── data-management.md        # Storage and quotas
+│   ├── python-environments.md    # Miniconda and ML workflows
+│   ├── computing-guide.md        # Interactive and batch jobs
+│   ├── container-workflow.md     # Docker/Singularity guide
+│   ├── complete-guide.md         # All sections combined
+│   ├── scripts.md                # Scripts library
+│   ├── troubleshooting.md        # Common issues
+│   └── scripts/                  # Test scripts organized by section
+│       ├── getting-started/      # Setup verification scripts
+│       ├── data-management/      # Storage test scripts
+│       ├── python-environments/  # ML workflow examples
+│       ├── computing-guide/      # Job submission examples
+│       └── container-workflow/   # Container test files
+├── mkdocs.yml                    # MkDocs configuration
+└── README.md                     # This file
 ```
 
 ## ✅ Tested Configuration
@@ -50,12 +52,6 @@ euler-cluster-guide/
 - **Cluster**: Euler (ETH Zurich)
 - **GPUs**: NVIDIA RTX 2080 Ti, RTX 4090
 
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
 
 ## 📞 Support
 
