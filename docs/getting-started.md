@@ -105,7 +105,27 @@ Once you are logged into the Euler cluster, it's important to confirm that you h
 
 ---
 
-### 🔍 How to Check Your Group Membership
+### 🚀 Quick Setup (Recommended)
+
+We provide a setup script that automatically verifies your RSL group membership and creates all necessary directories:
+
+```bash
+# Download and run the setup script
+wget https://raw.githubusercontent.com/leggedrobotics/euler-cluster-guide/main/docs/scripts/getting-started/test_group_membership.sh
+bash test_group_membership.sh
+```
+
+This script will:
+- ✅ Check your RSL group membership
+- ✅ Create all required directories in project and work partitions
+- ✅ Display your storage quotas
+- ✅ Verify everything is set up correctly
+
+---
+
+### 🔍 Manual Setup (Alternative)
+
+If you prefer to set up manually:
 
 1. While connected to Euler (after logging in via SSH), run the following command in the terminal:
 
@@ -121,10 +141,10 @@ Once you are logged into the Euler cluster, it's important to confirm that you h
 
 3. This message confirms that you are part of the `es_hutter` group, which is the shareholder group for the RSL lab.
 
-4. Create your user directories for storage by using the following command
+4. Create your user directories for storage by using the following command:
    ```bash 
-   mkdir /cluster/project/rsl/$USER
-   mkdir /cluster/work/rsl/$USER
+   mkdir -p /cluster/project/rsl/$USER
+   mkdir -p /cluster/work/rsl/$USER
    ```
 
 ---
@@ -133,19 +153,6 @@ Once you are logged into the Euler cluster, it's important to confirm that you h
 
 - Double-check with your supervisor whether you've been added to the group.
 - It may take a few hours after being added for the change to propagate.
-
----
-
-## 🧪 Test Scripts
-
-To verify your setup is working correctly, we provide test scripts:
-
-- **[test_group_membership.sh](scripts/getting-started/test_group_membership.sh)** - Verifies RSL group membership and creates user directories
-
-Run the test after logging in:
-```bash
-bash /path/to/test_group_membership.sh
-```
 
 ---
 
