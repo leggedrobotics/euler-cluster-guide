@@ -1,133 +1,71 @@
----
-layout: home
-title: RSL Euler Cluster Guide
-nav_order: 1
-description: "Comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich"
-permalink: /
----
-
 # RSL Euler Cluster Guide
-{: .fs-9 }
 
-A comprehensive guide for the Robotics Systems Lab community at ETH Zurich
-{: .fs-6 .fw-300 }
+Welcome to the comprehensive guide for using the Euler HPC cluster at ETH Zurich, specifically tailored for the Robotics Systems Lab (RSL) community.
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View on GitHub](https://github.com/leggedrobotics/euler-cluster-guide){: .btn .fs-5 .mb-4 .mb-md-0 }
+<div class="grid cards" markdown>
 
----
+- :material-rocket-launch: **Getting Started**  
+  New to Euler? Start with our [Complete Guide](complete-guide.md) for step-by-step instructions on accessing and using the cluster.
 
-## About this guide
+- :material-docker: **Container Workflows**  
+  Learn how to build, deploy, and run [containerized applications](container-workflow.md) using Docker and Singularity on Euler.
 
-This guide provides a complete workflow for deploying containerized applications on ETH Zurich's Euler cluster, specifically tailored for the **Legged Robotics** community. Whether you're running robot simulations, training neural networks, or processing sensor data, this guide will help you leverage the cluster's computational resources effectively.
+- :material-code-braces: **Scripts & Examples**  
+  Browse our [scripts library](scripts.md) for ready-to-use SLURM job scripts, Docker examples, and automation tools.
 
-### What you'll learn
+- :material-help-circle: **Troubleshooting**  
+  Find solutions to common issues in our [troubleshooting guide](troubleshooting.md).
 
-<div class="alert alert-info">
-<strong>📦 Containerization</strong> - Build and optimize Docker containers for HPC environments<br>
-<strong>🔄 Conversion</strong> - Transform Docker images to Singularity format for cluster compatibility<br>
-<strong>🚀 Deployment</strong> - Submit and manage GPU-accelerated jobs using SLURM<br>
-<strong>⚡ Optimization</strong> - Maximize performance for robotics and ML workloads
 </div>
 
-## Getting started
+## Quick Example
 
-### Prerequisites
-{: .fs-6 }
+```bash
+# Build your Docker image
+docker build -t my-robot-sim:latest .
+
+# Convert to Singularity
+apptainer build --sandbox my-robot-sim.sif docker-daemon://my-robot-sim:latest
+
+# Transfer to Euler
+scp my-robot-sim.tar euler:/cluster/work/rsl/$USER/containers/
+
+# Submit job
+sbatch run_simulation.sh
+```
+
+## Prerequisites
 
 Before you begin, ensure you have:
 
 - ✅ Access to the Euler cluster (RSL group membership)
-- ✅ Docker installed locally (v24.0.7)
-- ✅ Apptainer/Singularity installed (v1.2.5)
+- ✅ Docker installed locally
+- ✅ Apptainer/Singularity installed
 - ✅ Basic familiarity with SLURM
 
-### Tested configuration
-{: .fs-6 }
+## Key Features
 
-<div class="code-example" markdown="1">
-| Component | Version/Specification |
-|:----------|:---------------------|
+- **GPU Computing**: Full support for NVIDIA GPUs (RTX 2080 Ti, RTX 4090, and more)
+- **Container Support**: Seamless Docker to Singularity conversion workflows
+- **Storage Options**: Multiple storage tiers for different use cases
+- **Python Environments**: Conda/Mamba integration for package management
+- **Interactive Sessions**: JupyterHub and VS Code support
+
+## Tested Configuration
+
+| Component | Version |
+|-----------|---------|
 | **Docker** | 24.0.7 |
 | **Apptainer** | 1.2.5 |
 | **Cluster** | Euler (ETH Zurich) |
-| **GPUs** | RTX 2080 Ti, RTX 4090 |
-| **Performance** | 10-15s extraction, 2s startup |
-</div>
+| **Group** | es_hutter (RSL) |
+
+## Support
+
+- **Cluster Issues**: Contact ETH IT ServiceDesk
+- **RSL Access**: Contact Manthan Patel
+- **Guide Issues**: [GitHub Issues](https://github.com/leggedrobotics/euler-cluster-guide/issues)
 
 ---
 
-## Documentation sections
-
-<div class="grid">
-  <div class="card">
-    <h3>📦 Container Workflow</h3>
-    <p>Step-by-step guide for building, converting, and deploying containers on the Euler cluster</p>
-    <p><a href="container-workflow/" class="btn btn-outline">Learn more →</a></p>
-  </div>
-  <div class="card">
-    <h3>📝 Scripts Library</h3>
-    <p>Ready-to-use scripts for common tasks and workflows on HPC environments</p>
-    <p><a href="scripts/" class="btn btn-outline">Browse scripts →</a></p>
-  </div>
-  <div class="card">
-    <h3>🔧 Troubleshooting</h3>
-    <p>Solutions to common issues and optimization tips for better performance</p>
-    <p><a href="troubleshooting/" class="btn btn-outline">Get help →</a></p>
-  </div>
-</div>
-
-### 📚 Additional Resources
-
-- [**Complete Guide**](complete-guide/) - Full Euler cluster documentation including SSH setup, storage management, and more
-- [**ETH Euler Wiki**](https://scicomp.ethz.ch/wiki/Euler) - Official cluster documentation
-- [**RSL Lab**](https://rsl.ethz.ch) - Robotic Systems Lab homepage
-
-## 🏃 Quick Example
-
-```bash
-# 1. Build your Docker image
-docker build -t my-robot-sim:latest .
-
-# 2. Convert to Singularity
-apptainer build --sandbox my-robot-sim.sif docker-daemon://my-robot-sim:latest
-
-# 3. Transfer to Euler
-scp my-robot-sim.tar euler:/cluster/work/rsl/$USER/containers/
-
-# 4. Submit job
-sbatch run_simulation.sh
-```
-
-## 📊 Performance Benchmarks
-
-Based on extensive testing on Euler:
-
-| Operation | Time | Notes |
-|-----------|------|-------|
-| Container extraction (8GB) | 10-15s | To local scratch (`$TMPDIR`) |
-| Container startup | ~2s | Including GPU initialization |
-| GPU detection | <1s | CUDA 11.8 environment |
-| File I/O | Varies | Use `$TMPDIR` for best performance |
-
-## 🤝 Contributing
-
-This guide is maintained by the Legged Robotics Lab at ETH Zurich. Contributions are welcome!
-
-- Report issues: [GitHub Issues](https://github.com/leggedrobotics/euler-cluster-guide/issues)
-- Submit improvements: [Pull Requests](https://github.com/leggedrobotics/euler-cluster-guide/pulls)
-
-## 📞 Support
-
-- **Cluster issues**: Contact ETH IT support
-- **Guide questions**: Open an issue on GitHub
-- **RSL-specific**: Contact your supervisor or Manthan Patel
-
-## 🔗 Additional Resources
-
-- [Official Euler Documentation](https://scicomp.ethz.ch/wiki/Euler)
-- [Isaac Lab Cluster Guide](https://isaac-sim.github.io/IsaacLab/main/source/deployment/cluster.html)
-- [ETH Zurich HPC Wiki](https://scicomp.ethz.ch/wiki)
-
----
-
-*Last updated: August 2025 | Tested on Euler cluster with RSL group allocation*
+*Maintained by the Robotics Systems Lab (RSL), ETH Zurich*
