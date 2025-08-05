@@ -100,8 +100,22 @@ extra:
 
 nav:
   - Home: index.md
-  - Complete Guide: complete-guide.md
+  - Getting Started:
+    - Overview: getting-started.md
+    - Access Requirements: getting-started.md#access-requirements
+    - SSH Setup: getting-started.md#connecting-to-euler-via-ssh
+    - Verify Access: getting-started.md#verifying-access-to-the-rsl-shareholder-group
+  - Data Management: data-management.md
+  - Python & ML:
+    - Overview: python-environments.md
+    - Miniconda Setup: python-environments.md#setting-up-miniconda
+    - ML Training: python-environments.md#ml-training-workflow
+  - Computing:
+    - Overview: computing-guide.md
+    - Interactive Sessions: computing-guide.md#interactive-sessions
+    - Batch Jobs: computing-guide.md#batch-jobs-with-slurm
   - Container Workflow: container-workflow.md
+  - Complete Guide: complete-guide.md
   - Scripts Library: scripts.md
   - Troubleshooting: troubleshooting.md
 
