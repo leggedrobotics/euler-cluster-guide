@@ -1,19 +1,27 @@
-# RSL Cluster Guide
+# RSL Euler Cluster Guide
 
-A comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich, specifically tailored for the Robotics Systems Lab (RSL) community.
+A comprehensive guide for the Euler HPC cluster at ETH Zurich, specifically tailored for the Robotics Systems Lab (RSL) community.
 
 ## 📚 Documentation
 
 The full documentation is available at: https://leggedrobotics.github.io/euler-cluster-guide/
 
-## 🚀 Quick Start
+## 📖 What's Included
 
-Visit the [complete documentation](https://leggedrobotics.github.io/euler-cluster-guide/) for detailed instructions on:
+This guide covers everything you need to get started with the Euler cluster:
 
-- Building and optimizing Docker containers for HPC environments
-- Converting Docker images to Singularity format
-- Deploying and managing GPU-accelerated jobs using SLURM
-- Performance optimization for robotics and ML workloads
+- **Access & Setup**: SSH configuration, group membership verification
+- **Storage Management**: Understanding quotas and file systems
+- **Computing Workflows**: Interactive sessions, batch jobs, GPU computing
+- **Container Workflows**: Docker to Singularity conversion and deployment
+- **Best Practices**: Performance optimization and troubleshooting
+
+## 🚀 Quick Links
+
+- [Complete Guide](https://leggedrobotics.github.io/euler-cluster-guide/complete-guide/) - Full documentation including SSH setup, storage, and computing basics
+- [Container Workflow](https://leggedrobotics.github.io/euler-cluster-guide/container-workflow/) - Detailed guide for containerized applications
+- [Scripts Library](https://leggedrobotics.github.io/euler-cluster-guide/scripts/) - Ready-to-use scripts and examples
+- [Troubleshooting](https://leggedrobotics.github.io/euler-cluster-guide/troubleshooting/) - Common issues and solutions
 
 ## 📁 Repository Structure
 
