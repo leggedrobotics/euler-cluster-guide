@@ -610,3 +610,34 @@ Before submitting your job, verify:
 - [ ] Paths use `$USER` variable
 - [ ] Local scratch `$TMPDIR` used for I/O
 - [ ] Results saved to persistent storage
+
+---
+
+## 🧪 Test Scripts
+
+We provide test scripts for all computing scenarios:
+
+### Interactive Sessions
+- Test scripts are provided inline in the examples above
+
+### Batch Jobs
+- **[test_cpu_job.sh](scripts/tests/computing-guide/test_cpu_job.sh)** - Basic CPU job submission
+- **[test_basic_cpu.sh](scripts/tests/computing-guide/test_basic_cpu.sh)** - Alternative CPU test
+- **[test_gpu_job.sh](scripts/tests/computing-guide/test_gpu_job.sh)** - GPU allocation test
+- **[test_gpu_specific.sh](scripts/tests/computing-guide/test_gpu_specific.sh)** - Specific GPU type selection (RTX 4090)
+- **[test_array_job.sh](scripts/tests/computing-guide/test_array_job.sh)** - Array job for parameter sweeps
+
+To run the tests:
+```bash
+# Test basic job submission
+sbatch test_cpu_job.sh
+
+# Test GPU allocation
+sbatch test_gpu_job.sh
+
+# Test specific GPU request
+sbatch test_gpu_specific.sh
+
+# Test array jobs (creates 6 tasks)
+sbatch test_array_job.sh
+```
