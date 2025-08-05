@@ -49,8 +49,6 @@ euler-cluster-guide/
 - **Apptainer**: 1.2.5
 - **Cluster**: Euler (ETH Zurich)
 - **GPUs**: NVIDIA RTX 2080 Ti, RTX 4090
-- **Container Size**: Up to 8GB
-- **Performance**: 10-15s extraction, 2s startup
 
 ## 🤝 Contributing
 
