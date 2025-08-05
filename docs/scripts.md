@@ -1,44 +1,62 @@
 # Scripts Library
 
-This page contains ready-to-use scripts for the Euler cluster container workflow.
+Ready-to-use scripts for the Euler cluster, organized by workflow section. All scripts have been tested on the Euler cluster with the RSL group allocation.
 
-## Test Scripts
+## 📁 Scripts Organization
 
-All scripts have been tested on the Euler cluster with the RSL group allocation.
+```
+scripts/
+├── getting-started/       # Initial setup scripts
+├── data-management/       # Storage and quota management
+├── python-environments/   # ML training examples
+├── computing-guide/       # Job submission templates
+└── container-workflow/    # Container deployment scripts
+```
 
-### Python Test Script
+## 🚀 Getting Started Scripts
 
-**[hello_cluster.py](scripts/hello_cluster.py)**
+### Setup Verification
+**[test_group_membership.sh](scripts/getting-started/test_group_membership.sh)**
 
-A comprehensive GPU test script that:
-- Detects available GPUs and CUDA version
-- Performs matrix multiplication on GPU
-- Saves results to output directory
-- Reports system information
+Verifies RSL group membership and creates all necessary directories:
+```bash
+wget https://raw.githubusercontent.com/leggedrobotics/euler-cluster-guide/main/docs/scripts/getting-started/test_group_membership.sh
+bash test_group_membership.sh
+```
 
-### Docker Configuration
+## 💾 Data Management Scripts
 
-**[Dockerfile](scripts/Dockerfile)**
+### Storage Quota Check
+**[test_storage_quotas.sh](scripts/data-management/test_storage_quotas.sh)**
 
-A minimal GPU-enabled Docker image with:
-- CUDA 11.8 runtime
-- PyTorch 2.0.1 with CUDA support
-- Python 3.10
+Comprehensive storage verification script that:
+- Checks all storage paths and creates missing directories
+- Displays current usage and quotas
+- Tests `$TMPDIR` functionality in job context
 
-### SLURM Job Script
+## 🐍 Python & ML Training Scripts
 
-**[test_job_project.sh](scripts/test_job_project.sh)**
+### ML Training Example
+**[fake_train.py](scripts/python-environments/fake_train.py)** | **[test_full_training_job.sh](scripts/python-environments/test_full_training_job.sh)**
 
-Optimized job submission script that:
-- Extracts container to local scratch for performance
-- Allocates GPU resources
-- Saves results to project partition
-- Reports timing information
+Complete ML training workflow example including:
+- Simulated training with checkpointing
+- Progress tracking and logging
+- Resource monitoring
+- Proper use of local scratch for data
 
-## Additional Examples
+## 💻 Computing Scripts
 
-### Multi-GPU Training Script
+### Basic Job Templates
 
+- **[test_cpu_job.sh](scripts/computing-guide/test_cpu_job.sh)** - Basic CPU job submission
+- **[test_gpu_job.sh](scripts/computing-guide/test_gpu_job.sh)** - GPU allocation test
+- **[test_gpu_specific.sh](scripts/computing-guide/test_gpu_specific.sh)** - Request specific GPU type (RTX 4090)
+- **[test_array_job.sh](scripts/computing-guide/test_array_job.sh)** - Array job for parameter sweeps
+
+### Advanced Templates
+
+#### Multi-GPU Training
 ```bash
 #!/bin/bash
 #SBATCH --job-name=multi-gpu-train
@@ -53,7 +71,7 @@ Optimized job submission script that:
 
 module load eth_proxy
 
-# Extract container
+# Extract container to local scratch
 tar -xf /cluster/work/rsl/$USER/containers/training.tar -C $TMPDIR
 
 # Run distributed training
@@ -67,51 +85,29 @@ singularity exec \
         train.py --distributed
 ```
 
-### Interactive Development Session
-
+#### Interactive Development Session
 ```bash
 # Request interactive GPU session
 srun --gpus=1 --mem=32G --tmp=50G --time=2:00:00 --pty bash
 
-# Extract container
+# In the session, extract and use container
 tar -xf /cluster/work/rsl/$USER/containers/dev.tar -C $TMPDIR
 
-# Enter container shell
 singularity shell --nv \
     --bind /cluster/project/rsl/$USER:/project \
     --bind /cluster/scratch/$USER:/data \
     $TMPDIR/dev.sif
 ```
 
-### Batch Processing Script
+## 📦 Container Workflow Scripts
 
-```bash
-#!/bin/bash
-#SBATCH --array=1-100
-#SBATCH --job-name=batch-process
-#SBATCH --output=logs/job_%A_%a.out
-#SBATCH --error=logs/job_%A_%a.err
-#SBATCH --time=1:00:00
-#SBATCH --gpus=1
-#SBATCH --tmp=50G
+### Container Test Suite
+- **[Dockerfile](scripts/container-workflow/Dockerfile)** - GPU-enabled Docker image with CUDA 11.8
+- **[hello_cluster.py](scripts/container-workflow/hello_cluster.py)** - GPU functionality test
+- **[test_job_project.sh](scripts/container-workflow/test_job_project.sh)** - Complete container job
+- **[test_container_extraction.sh](scripts/container-workflow/test_container_extraction.sh)** - Extraction timing test
 
-module load eth_proxy
-
-# Extract container once
-tar -xf /cluster/work/rsl/$USER/containers/processor.tar -C $TMPDIR
-
-# Process specific file based on array index
-singularity exec --nv \
-    --bind /cluster/scratch/$USER/input:/input:ro \
-    --bind /cluster/project/rsl/$USER/output:/output \
-    $TMPDIR/processor.sif \
-    python3 process.py --file /input/data_${SLURM_ARRAY_TASK_ID}.txt
-```
-
-## Helper Scripts
-
-### Container Build and Deploy
-
+### Build and Deploy Helper
 ```bash
 #!/bin/bash
 # build_and_deploy.sh
@@ -128,7 +124,7 @@ docker build -t ${IMAGE_NAME}:${VERSION} .
 
 # Convert to Singularity
 echo "Converting to Singularity..."
-APPTAINER_NOHTTPS=1 apptainer build --sandbox --fakeroot \
+apptainer build --sandbox --fakeroot \
     ${IMAGE_NAME}-${VERSION}.sif \
     docker-daemon://${IMAGE_NAME}:${VERSION}
 
@@ -144,8 +140,9 @@ scp ${IMAGE_NAME}-${VERSION}.tar.gz \
 echo "Done! Container available as ${IMAGE_NAME}-${VERSION}.tar.gz"
 ```
 
-### Resource Monitor
+## 🔧 Utility Scripts
 
+### Job Resource Monitor
 ```bash
 #!/bin/bash
 # monitor_job.sh
@@ -165,7 +162,7 @@ while true; do
     echo -e "\n=== Resource Usage ==="
     sstat -j $JOB_ID --format=JobID,MaxRSS,MaxDiskRead,MaxDiskWrite
     
-    # Get node name
+    # Get node name and check GPU
     NODE=$(squeue -j $JOB_ID -h -o %N)
     if [ ! -z "$NODE" ]; then
         echo -e "\n=== GPU Usage on $NODE ==="
@@ -176,15 +173,40 @@ while true; do
 done
 ```
 
-## Download All Scripts
+### Batch Job Status Check
+```bash
+#!/bin/bash
+# check_jobs.sh
 
-You can download all scripts as a ZIP file or clone the repository:
+echo "=== Your Current Jobs ==="
+squeue -u $USER --format="%.18i %.9P %.30j %.8u %.2t %.10M %.6D %R"
+
+echo -e "\n=== Recently Completed Jobs ==="
+sacct -u $USER --starttime=$(date -d '1 day ago' +%Y-%m-%d) \
+    --format=JobID,JobName,State,ExitCode,Elapsed,MaxRSS
+
+echo -e "\n=== Storage Usage ==="
+lquota
+```
+
+## 📥 Download Scripts
+
+Clone the entire repository to get all scripts:
 
 ```bash
 git clone https://github.com/leggedrobotics/euler-cluster-guide.git
 cd euler-cluster-guide/docs/scripts
+
+# Make all scripts executable
+find . -name "*.sh" -type f -exec chmod +x {} \;
+```
+
+Or download individual scripts:
+```bash
+# Example: Download the GPU test job
+wget https://raw.githubusercontent.com/leggedrobotics/euler-cluster-guide/main/docs/scripts/computing-guide/test_gpu_job.sh
 ```
 
 ---
 
-[Back to Home](/) | [Container Workflow](/container-workflow) | [Troubleshooting](/troubleshooting)
+[Back to Home](/) | [Computing Guide](/computing-guide) | [Container Workflow](/container-workflow) | [Troubleshooting](/troubleshooting)
