@@ -621,11 +621,11 @@ We provide test scripts for all computing scenarios:
 - Test scripts are provided inline in the examples above
 
 ### Batch Jobs
-- **[test_cpu_job.sh](scripts/test_cpu_job.sh)** - Basic CPU job submission
-- **[test_basic_cpu.sh](scripts/test_basic_cpu.sh)** - Alternative CPU test
-- **[test_gpu_job.sh](scripts/test_gpu_job.sh)** - GPU allocation test
-- **[test_gpu_specific.sh](scripts/test_gpu_specific.sh)** - Specific GPU type selection (RTX 4090)
-- **[test_array_job.sh](scripts/test_array_job.sh)** - Array job for parameter sweeps
+- **[test_cpu_job.sh](scripts/computing-guide/test_cpu_job.sh)** - Basic CPU job submission
+- **[test_basic_cpu.sh](scripts/computing-guide/test_basic_cpu.sh)** - Alternative CPU test
+- **[test_gpu_job.sh](scripts/computing-guide/test_gpu_job.sh)** - GPU allocation test
+- **[test_gpu_specific.sh](scripts/computing-guide/test_gpu_specific.sh)** - Specific GPU type selection (RTX 4090)
+- **[test_array_job.sh](scripts/computing-guide/test_array_job.sh)** - Array job for parameter sweeps
 
 To run the tests:
 ```bash

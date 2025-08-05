@@ -83,7 +83,7 @@ Whenever you run a compute job, you can also ask for a certain amount of local s
 
 To verify your storage setup and check quotas:
 
-- **[test_storage_quotas.sh](scripts/test_storage_quotas.sh)** - Checks all storage paths, quotas, and creates missing directories
+- **[test_storage_quotas.sh](scripts/data-management/test_storage_quotas.sh)** - Checks all storage paths, quotas, and creates missing directories
 
 Submit as a job to test `$TMPDIR`:
 ```bash

@@ -379,8 +379,8 @@ python analyze_results.py --results-dir /cluster/project/rsl/$USER/results/<job_
 
 We provide complete test scripts to verify the ML workflow:
 
-- **[fake_train.py](scripts/fake_train.py)** - Simulated ML training script for testing
-- **[test_full_training_job.sh](scripts/test_full_training_job.sh)** - Complete ML training job test
+- **[fake_train.py](scripts/python-environments/fake_train.py)** - Simulated ML training script for testing
+- **[test_full_training_job.sh](scripts/python-environments/test_full_training_job.sh)** - Complete ML training job test
 
 To test the full workflow:
 ```bash
