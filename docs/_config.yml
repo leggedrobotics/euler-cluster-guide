@@ -1,0 +1,27 @@
+title: Euler Cluster Guide for Legged Robotics
+description: A comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich
+theme: jekyll-theme-minimal
+author: Legged Robotics Lab, ETH Zurich
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Container Workflow
+    url: /container-workflow
+  - title: Scripts
+    url: /scripts
+  - title: Troubleshooting
+    url: /troubleshooting
+
+# GitHub repository
+github:
+  repository_url: https://github.com/leggedrobotics/euler-cluster-guide
+  
+# Analytics (optional)
+google_analytics: 
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
