@@ -355,4 +355,32 @@ ssh euler "cd /cluster/work/rsl/$USER && sbatch job_${VERSION}.sh"
 
 ---
 
+## 🧪 Test Scripts and Files
+
+Complete test files for the container workflow:
+
+- **[Dockerfile](scripts/tests/container-workflow/Dockerfile)** - Test Docker image with CUDA support
+- **[hello_cluster.py](scripts/tests/container-workflow/hello_cluster.py)** - Python test script for containers
+- **[test_job_project.sh](scripts/tests/container-workflow/test_job_project.sh)** - Complete container job example
+- **[test_container_extraction.sh](scripts/tests/container-workflow/test_container_extraction.sh)** - Test container extraction timing
+
+To test the complete workflow:
+```bash
+# 1. Build Docker image locally
+docker build -t euler-test:latest -f Dockerfile .
+
+# 2. Convert to Singularity
+apptainer build --sandbox --fakeroot euler-test.sif docker-daemon://euler-test:latest
+
+# 3. Compress and transfer
+tar -czf euler-test.tar.gz euler-test.sif
+scp euler-test.tar.gz euler:/cluster/work/rsl/$USER/containers/
+
+# 4. Submit test job
+ssh euler
+sbatch test_job_project.sh
+```
+
+---
+
 [Back to Home](/) | [View Scripts](/scripts) | [Troubleshooting](/troubleshooting)
