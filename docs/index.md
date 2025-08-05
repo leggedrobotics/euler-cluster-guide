@@ -1,24 +1,39 @@
 # RSL Euler Cluster Guide
 
-## 📚 Documentation
+## 🚀 Quick Access to All Sections
 
-### Complete Guide
-**[Open Complete Guide →](complete-guide.md)**
+### 1. Getting Started
+**[Access Requirements, SSH Setup, Verification →](getting-started.md)**
+- Getting cluster access
+- Setting up SSH connection
+- Verifying RSL group membership
 
-The complete guide contains:
-- Access Requirements
-- Connecting to Euler via SSH
-- Verifying RSL Group Membership  
-- Data Management on Euler
-- Setting Up Miniconda Environments
-- Interactive Sessions
-- Sample Sbatch Scripts
-- Sample Training Workflow
-- Container Workflow
-- Useful Links
+### 2. Data Management
+**[Storage Locations and Quotas →](data-management.md)**
+- Home, Scratch, Project, Work directories
+- Storage quotas and best practices
+- Using local scratch ($TMPDIR)
 
-### Other Resources
-- **[Container Workflow](container-workflow.md)** - Docker/Singularity detailed guide
+### 3. Python Environments & ML Training
+**[Miniconda Setup and Training Workflows →](python-environments.md)**
+- Installing and managing Miniconda
+- Creating conda environments
+- Complete ML training workflow
+
+### 4. Computing on Euler
+**[Interactive Sessions and Batch Jobs →](computing-guide.md)**
+- Requesting interactive sessions
+- Writing and submitting SLURM job scripts
+- GPU selection and multi-GPU training
+
+### 5. Container Workflow
+**[Docker/Singularity Guide →](container-workflow.md)**
+- Building Docker containers
+- Converting to Singularity
+- Running containerized jobs
+
+### 📚 Additional Resources
+- **[Complete Reference Guide](complete-guide.md)** - All sections in one document
 - **[Scripts Library](scripts.md)** - Ready-to-use job scripts
 - **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
 
