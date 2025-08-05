@@ -136,6 +136,19 @@ Once you are logged into the Euler cluster, it's important to confirm that you h
 
 ---
 
+## 🧪 Test Scripts
+
+To verify your setup is working correctly, we provide test scripts:
+
+- **[test_group_membership.sh](scripts/tests/getting-started/test_group_membership.sh)** - Verifies RSL group membership and creates user directories
+
+Run the test after logging in:
+```bash
+bash /path/to/test_group_membership.sh
+```
+
+---
+
 ## Next Steps
 
 Once you have verified your access:
