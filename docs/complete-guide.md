@@ -1,5 +1,22 @@
 
-# Euler Cluster User Guide (Robotic Systems Lab)
+---
+layout: default
+title: Complete Guide
+nav_order: 5
+has_children: false
+permalink: /complete-guide/
+---
+
+# Complete Euler Cluster Guide
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 This guide is designed to help new users access and begin working on the **Euler Cluster** at ETH Zurich, specifically for members of the **RSL group (es_hutter)**. It walks you through the complete process of connecting to the cluster, setting up secure access, and verifying your group membership.
 
