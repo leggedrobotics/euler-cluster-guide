@@ -3,118 +3,501 @@
 
 @import "{{ site.theme }}";
 
-// Override narrow content width
+/* ============================================
+   MODERN PROFESSIONAL REDESIGN
+   Fixed narrow layout with 1200px+ content area
+   ============================================ */
+
+// CSS Variables for consistent theming
+:root {
+  --primary-color: #0366d6;
+  --secondary-color: #586069;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+  --light-bg: #f8f9fa;
+  --dark-bg: #24292e;
+  --border-color: #e1e4e8;
+  --text-color: #24292e;
+  --text-muted: #6a737d;
+  --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-hover: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
+}
+
+/* ============================================
+   LAYOUT OVERRIDE - FIXING NARROW CONTENT
+   ============================================ */
+
+// Remove all width restrictions and make it truly wide
+.site-content,
+.main-content-wrap,
 .main-content {
-  max-width: 1200px !important;
-  margin: 0 auto;
-  padding: 2rem 4rem;
+  max-width: none !important;
+  width: 100% !important;
 }
 
-// Better code blocks
-pre {
-  background-color: #f6f8fa;
+// Create proper container with 1200px+ content area
+.main-content {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 2.5rem 3rem !important;
+  background: white;
+  min-height: calc(100vh - 200px);
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  margin-top: 1rem !important;
+  margin-bottom: 2rem !important;
+}
+
+// Sidebar adjustments for better layout
+.side-bar {
+  width: 280px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-right: none;
+  box-shadow: var(--shadow);
+}
+
+// Navigation improvements
+.navigation-list-item {
+  margin: 0.25rem 0;
+}
+
+.navigation-list-link {
+  color: rgba(255, 255, 255, 0.9) !important;
   border-radius: 6px;
-  padding: 16px;
-  overflow: auto;
-  font-size: 14px;
-  line-height: 1.45;
+  padding: 0.75rem 1rem;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
 }
 
-// Improve tables
-table {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  overflow: auto;
+.navigation-list-link:hover,
+.navigation-list-link.active {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+  transform: translateX(4px);
 }
 
-table th,
-table td {
-  padding: 12px 16px;
-  border: 1px solid #d1d5da;
-}
-
-table th {
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-// Better navigation
-.site-nav {
-  float: none;
-  position: static;
-  width: 100%;
-  background-color: #24292e;
+// Site header improvements
+.site-header {
+  background: var(--dark-bg);
+  border-bottom: 3px solid var(--primary-color);
   padding: 1rem 0;
-  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
 }
 
-// Responsive images
-img {
-  max-width: 100%;
-  height: auto;
+.site-title {
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
 }
 
-// Better headings
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
+/* ============================================
+   TYPOGRAPHY & CONTENT STYLING
+   ============================================ */
+
+// Modern typography scale
+h1 { 
+  font-size: 2.5rem !important; 
+  font-weight: 800 !important;
+  color: var(--text-color);
+  margin: 2rem 0 1.5rem 0;
+  line-height: 1.2;
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 0.5rem;
 }
 
-// Alert boxes
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-}
-
-.alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
-}
-
-// Copy button for code blocks
-.highlight {
+h2 { 
+  font-size: 2rem !important; 
+  font-weight: 700 !important;
+  color: var(--text-color);
+  margin: 2rem 0 1rem 0;
   position: relative;
 }
 
-.copy-code-button {
+h2::before {
+  content: '';
   position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 4px 8px;
-  font-size: 12px;
-  background-color: #f0f0f0;
-  border: 1px solid #d1d5da;
-  border-radius: 3px;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 2rem;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+h3 { 
+  font-size: 1.5rem !important; 
+  font-weight: 600 !important;
+  color: var(--secondary-color);
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+h4, h5, h6 {
+  font-weight: 600 !important;
+  color: var(--secondary-color);
+  margin: 1rem 0 0.5rem 0;
+}
+
+// Better paragraph spacing
+p {
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* ============================================
+   ENHANCED CODE BLOCKS & SYNTAX HIGHLIGHTING
+   ============================================ */
+
+// Modern code blocks with copy functionality
+.highlight,
+pre {
+  background: #f8f9fa !important;
+  border: 1px solid var(--border-color);
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem !important;
+  line-height: 1.6;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+// Inline code
+code:not(.highlight code) {
+  background: #f3f4f6 !important;
+  color: #e83e8c !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500;
+  border: 1px solid #e9ecef;
+}
+
+// Code block language labels
+.highlight::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0 8px 0 6px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   MODERN TABLE STYLING
+   ============================================ */
+
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 2rem 0 !important;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+}
+
+table th {
+  background: linear-gradient(135deg, var(--primary-color), #4a90e2) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 1rem 1.25rem !important;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+table td {
+  padding: 0.875rem 1.25rem !important;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: top;
+}
+
+table tr:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================================
+   ENHANCED ALERT/CALLOUT BOXES
+   ============================================ */
+
+.highlight,
+.callout {
+  border-left: 4px solid var(--primary-color);
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  box-shadow: var(--shadow);
+}
+
+.alert {
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: none;
+  border-left: 4px solid transparent;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-left-color: var(--info-color);
+  color: #0277bd;
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border-left-color: var(--warning-color);
+  color: #f57c00;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  border-left-color: var(--success-color);
+  color: #2e7d32;
+}
+
+/* ============================================
+   MODERN BUTTON STYLING
+   ============================================ */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  text-transform: none;
+  letter-spacing: 0.025em;
 }
 
-.copy-code-button:hover {
-  background-color: #e1e4e8;
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), #4a90e2);
+  color: white;
 }
 
-// Mobile responsive
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  text-decoration: none;
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   GRID SYSTEM FOR MODERN LAYOUTS
+   ============================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.card p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   NAVIGATION IMPROVEMENTS
+   ============================================ */
+
+.aux-nav {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin: 0 1rem;
+}
+
+.aux-nav-list-item a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.aux-nav-list-item a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white !important;
+}
+
+/* ============================================
+   FOOTER IMPROVEMENTS
+   ============================================ */
+
+.site-footer {
+  background: var(--dark-bg);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2rem 0;
+  margin-top: 4rem;
+  border-radius: 12px 12px 0 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .main-content {
+    max-width: 95% !important;
+    padding: 2rem !important;
+    margin: 0.5rem auto !important;
+  }
+}
+
 @media (max-width: 768px) {
   .main-content {
-    padding: 1rem 2rem;
+    padding: 1.5rem !important;
+    margin: 0.25rem !important;
+    border-radius: 4px;
+  }
+  
+  .side-bar {
+    width: 100% !important;
+    position: static !important;
+  }
+  
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.5rem !important; }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   table {
-    font-size: 14px;
+    font-size: 0.875rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
   
-  pre {
-    font-size: 12px;
+  .btn {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem !important;
+  }
+  
+  pre, .highlight {
+    padding: 1rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  table th,
+  table td {
+    padding: 0.5rem !important;
+  }
+}
+
+/* ============================================
+   PERFORMANCE & ACCESSIBILITY
+   ============================================ */
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Focus styles for accessibility
+a:focus,
+button:focus,
+.btn:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+// Reduce motion for users who prefer it
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .side-bar,
+  .site-header,
+  .site-footer,
+  .btn {
+    display: none !important;
+  }
+  
+  .main-content {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
   }
 }
