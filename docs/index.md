@@ -1,15 +1,15 @@
 ---
 layout: home
-title: Home
+title: RSL Euler Cluster Guide
 nav_order: 1
 description: "Comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich"
 permalink: /
 ---
 
-# Euler Cluster Guide
+# RSL Euler Cluster Guide
 {: .fs-9 }
 
-A comprehensive guide for the Legged Robotics community at ETH Zurich
+A comprehensive guide for the Robotics Systems Lab community at ETH Zurich
 {: .fs-6 .fw-300 }
 
 [Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View on GitHub](https://github.com/leggedrobotics/euler-cluster-guide){: .btn .fs-5 .mb-4 .mb-md-0 }
@@ -22,14 +22,12 @@ This guide provides a complete workflow for deploying containerized applications
 
 ### What you'll learn
 
-{: .highlight }
-> 📦 **Containerization** - Build and optimize Docker containers for HPC environments
->
-> 🔄 **Conversion** - Transform Docker images to Singularity format for cluster compatibility
->
-> 🚀 **Deployment** - Submit and manage GPU-accelerated jobs using SLURM
->
-> ⚡ **Optimization** - Maximize performance for robotics and ML workloads
+<div class="alert alert-info">
+<strong>📦 Containerization</strong> - Build and optimize Docker containers for HPC environments<br>
+<strong>🔄 Conversion</strong> - Transform Docker images to Singularity format for cluster compatibility<br>
+<strong>🚀 Deployment</strong> - Submit and manage GPU-accelerated jobs using SLURM<br>
+<strong>⚡ Optimization</strong> - Maximize performance for robotics and ML workloads
+</div>
 
 ## Getting started
 
@@ -61,20 +59,20 @@ Before you begin, ensure you have:
 ## Documentation sections
 
 <div class="grid">
-  <div class="col-4 col-md-4 p-3">
-    <h3 class="fs-5">📦 Container Workflow</h3>
-    <p>Step-by-step guide for building, converting, and deploying containers</p>
-    <p><a href="container-workflow/">Learn more →</a></p>
+  <div class="card">
+    <h3>📦 Container Workflow</h3>
+    <p>Step-by-step guide for building, converting, and deploying containers on the Euler cluster</p>
+    <p><a href="container-workflow/" class="btn btn-outline">Learn more →</a></p>
   </div>
-  <div class="col-4 col-md-4 p-3">
-    <h3 class="fs-5">📝 Scripts Library</h3>
-    <p>Ready-to-use scripts for common tasks and workflows</p>
-    <p><a href="scripts/">Browse scripts →</a></p>
+  <div class="card">
+    <h3>📝 Scripts Library</h3>
+    <p>Ready-to-use scripts for common tasks and workflows on HPC environments</p>
+    <p><a href="scripts/" class="btn btn-outline">Browse scripts →</a></p>
   </div>
-  <div class="col-4 col-md-4 p-3">
-    <h3 class="fs-5">🔧 Troubleshooting</h3>
-    <p>Solutions to common issues and optimization tips</p>
-    <p><a href="troubleshooting/">Get help →</a></p>
+  <div class="card">
+    <h3>🔧 Troubleshooting</h3>
+    <p>Solutions to common issues and optimization tips for better performance</p>
+    <p><a href="troubleshooting/" class="btn btn-outline">Get help →</a></p>
   </div>
 </div>
 

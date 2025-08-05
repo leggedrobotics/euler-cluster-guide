@@ -1,6 +1,6 @@
-# Euler Cluster Guide for Legged Robotics
+# RSL Cluster Guide
 
-A comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich, specifically tailored for the Legged Robotics community.
+A comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich, specifically tailored for the Robotics Systems Lab (RSL) community.
 
 ## 📚 Documentation
 
@@ -8,26 +8,12 @@ The full documentation is available at: https://leggedrobotics.github.io/euler-c
 
 ## 🚀 Quick Start
 
-1. **Build Docker container**
-   ```bash
-   docker build -t my-app:latest .
-   ```
+Visit the [complete documentation](https://leggedrobotics.github.io/euler-cluster-guide/) for detailed instructions on:
 
-2. **Convert to Singularity**
-   ```bash
-   apptainer build --sandbox --fakeroot my-app.sif docker-daemon://my-app:latest
-   tar -cvf my-app.tar my-app.sif
-   ```
-
-3. **Transfer to Euler**
-   ```bash
-   scp my-app.tar euler:/cluster/work/rsl/$USER/containers/
-   ```
-
-4. **Submit job**
-   ```bash
-   sbatch job_script.sh
-   ```
+- Building and optimizing Docker containers for HPC environments
+- Converting Docker images to Singularity format
+- Deploying and managing GPU-accelerated jobs using SLURM
+- Performance optimization for robotics and ML workloads
 
 ## 📁 Repository Structure
 
@@ -73,8 +59,8 @@ Contributions are welcome! Please:
 
 ## 📄 License
 
-This guide is provided by the Legged Robotics Lab at ETH Zurich for educational purposes.
+This guide is provided by the Robotics Systems Lab (RSL) at ETH Zurich for educational purposes.
 
 ---
 
-*Maintained by the Legged Robotics Lab, ETH Zurich*
+*Maintained by the Robotics Systems Lab (RSL), ETH Zurich*
