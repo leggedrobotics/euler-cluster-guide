@@ -596,16 +596,6 @@ python my_script.py || {
 5. **Use job arrays** - For embarrassingly parallel tasks
 6. **Add error handling** - Check exit codes and add recovery logic
 
-### 📊 Resource Estimation Guide
-
-| Task Type | CPUs | Memory | GPU | Time |
-|-----------|------|--------|-----|------|
-| Data preprocessing | 8-16 | 32-64G | 0 | 2-4h |
-| CNN training (small) | 8 | 32G | 1 | 12-24h |
-| Transformer training | 16-32 | 64-128G | 1-4 | 24-72h |
-| Hyperparameter search | 4-8 | 16-32G | 1 | 2-4h per run |
-| Batch inference | 4-8 | 16-32G | 1 | 1-2h |
-
 ### 📝 Job Script Checklist
 
 Before submitting your job, verify:
