@@ -33,12 +33,15 @@ The full documentation is available at: https://leggedrobotics.github.io/euler-c
 
 ```
 euler-cluster-guide/
-├── euler_cluster_guide.md    # Complete guide with Section 9 filled
 ├── docs/                     # GitHub Pages documentation
 │   ├── index.md             # Homepage
-│   ├── container-workflow.md # Detailed workflow
+│   ├── complete-guide.md    # Full Euler guide (SSH, storage, etc.)
+│   ├── container-workflow.md # Container workflow details
 │   ├── scripts.md           # Scripts library
 │   ├── troubleshooting.md   # Common issues and solutions
+│   ├── assets/              # CSS and images
+│   │   └── css/
+│   │       └── style.scss   # Custom styling
 │   └── scripts/             # Test scripts
 │       ├── hello_cluster.py # GPU test script
 │       ├── Dockerfile       # Example container

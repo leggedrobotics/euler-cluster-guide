@@ -78,6 +78,12 @@ Before you begin, ensure you have:
   </div>
 </div>
 
+### 📚 Additional Resources
+
+- [**Complete Guide**](complete-guide/) - Full Euler cluster documentation including SSH setup, storage management, and more
+- [**ETH Euler Wiki**](https://scicomp.ethz.ch/wiki/Euler) - Official cluster documentation
+- [**RSL Lab**](https://rsl.ethz.ch) - Robotic Systems Lab homepage
+
 ## 🏃 Quick Example
 
 ```bash
