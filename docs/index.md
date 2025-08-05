@@ -1,52 +1,82 @@
 ---
-layout: default
+layout: home
 title: Home
+nav_order: 1
+description: "Comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich"
+permalink: /
 ---
 
-# Euler Cluster Guide for Legged Robotics
+# Euler Cluster Guide
+{: .fs-9 }
 
-Welcome to the comprehensive guide for using Docker containers on the Euler cluster at ETH Zurich, specifically tailored for the Legged Robotics community.
+A comprehensive guide for the Legged Robotics community at ETH Zurich
+{: .fs-6 .fw-300 }
 
-## 🚀 Quick Start
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View on GitHub](https://github.com/leggedrobotics/euler-cluster-guide){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-This guide will help you:
-- Build and deploy Docker containers to Euler
-- Convert Docker images to Singularity format
-- Submit GPU-accelerated jobs using SLURM
-- Optimize performance for robotics and ML workloads
+---
 
-## 📋 Prerequisites
+## About this guide
 
-Before starting, ensure you have:
-- Access to the Euler cluster (RSL group membership)
-- Docker installed locally (tested with v24.0.7)
-- Apptainer/Singularity installed (tested with v1.2.5)
-- Basic familiarity with SLURM job scheduling
+This guide provides a complete workflow for deploying containerized applications on ETH Zurich's Euler cluster, specifically tailored for the **Legged Robotics** community. Whether you're running robot simulations, training neural networks, or processing sensor data, this guide will help you leverage the cluster's computational resources effectively.
 
-## 🔧 Tested Configuration
+### What you'll learn
 
-This workflow has been thoroughly tested with:
-- **Docker**: 24.0.7
-- **Apptainer**: 1.2.5
-- **Cluster**: Euler (ETH Zurich)
-- **GPUs**: NVIDIA GeForce RTX 2080 Ti, RTX 4090
-- **Container Size**: Up to 8GB
-- **Performance**: 10-15s extraction time, 2s startup overhead
+{: .highlight }
+> 📦 **Containerization** - Build and optimize Docker containers for HPC environments
+>
+> 🔄 **Conversion** - Transform Docker images to Singularity format for cluster compatibility
+>
+> 🚀 **Deployment** - Submit and manage GPU-accelerated jobs using SLURM
+>
+> ⚡ **Optimization** - Maximize performance for robotics and ML workloads
 
-## 📚 Guide Contents
+## Getting started
 
-### [Container Workflow](container-workflow.html)
-Complete step-by-step guide for building, converting, and running containers on Euler.
+### Prerequisites
+{: .fs-6 }
 
-### [Scripts Library](scripts/)
-Ready-to-use scripts including:
-- Dockerfiles for common robotics/ML frameworks
-- SLURM job templates
-- Performance testing utilities
-- Helper scripts for automation
+Before you begin, ensure you have:
 
-### [Troubleshooting](troubleshooting.html)
-Solutions to common issues and optimization tips.
+- ✅ Access to the Euler cluster (RSL group membership)
+- ✅ Docker installed locally (v24.0.7)
+- ✅ Apptainer/Singularity installed (v1.2.5)
+- ✅ Basic familiarity with SLURM
+
+### Tested configuration
+{: .fs-6 }
+
+<div class="code-example" markdown="1">
+| Component | Version/Specification |
+|:----------|:---------------------|
+| **Docker** | 24.0.7 |
+| **Apptainer** | 1.2.5 |
+| **Cluster** | Euler (ETH Zurich) |
+| **GPUs** | RTX 2080 Ti, RTX 4090 |
+| **Performance** | 10-15s extraction, 2s startup |
+</div>
+
+---
+
+## Documentation sections
+
+<div class="grid">
+  <div class="col-4 col-md-4 p-3">
+    <h3 class="fs-5">📦 Container Workflow</h3>
+    <p>Step-by-step guide for building, converting, and deploying containers</p>
+    <p><a href="container-workflow/">Learn more →</a></p>
+  </div>
+  <div class="col-4 col-md-4 p-3">
+    <h3 class="fs-5">📝 Scripts Library</h3>
+    <p>Ready-to-use scripts for common tasks and workflows</p>
+    <p><a href="scripts/">Browse scripts →</a></p>
+  </div>
+  <div class="col-4 col-md-4 p-3">
+    <h3 class="fs-5">🔧 Troubleshooting</h3>
+    <p>Solutions to common issues and optimization tips</p>
+    <p><a href="troubleshooting/">Get help →</a></p>
+  </div>
+</div>
 
 ## 🏃 Quick Example
 

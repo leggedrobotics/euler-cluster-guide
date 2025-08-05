@@ -1,9 +1,21 @@
 ---
 layout: default
 title: Troubleshooting
+nav_order: 4
+has_children: false
+permalink: /troubleshooting/
 ---
 
-# Troubleshooting Guide
+# Troubleshooting
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 This page covers common issues and solutions when working with containers on the Euler cluster.
 

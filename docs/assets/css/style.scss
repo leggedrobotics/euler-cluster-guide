@@ -1,0 +1,120 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// Override narrow content width
+.main-content {
+  max-width: 1200px !important;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+}
+
+// Better code blocks
+pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+// Improve tables
+table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  overflow: auto;
+}
+
+table th,
+table td {
+  padding: 12px 16px;
+  border: 1px solid #d1d5da;
+}
+
+table th {
+  background-color: #f6f8fa;
+  font-weight: 600;
+}
+
+// Better navigation
+.site-nav {
+  float: none;
+  position: static;
+  width: 100%;
+  background-color: #24292e;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+// Responsive images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Better headings
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+// Alert boxes
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+// Copy button for code blocks
+.highlight {
+  position: relative;
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.copy-code-button:hover {
+  background-color: #e1e4e8;
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem 2rem;
+  }
+  
+  table {
+    font-size: 14px;
+  }
+  
+  pre {
+    font-size: 12px;
+  }
+}
