@@ -1,21 +1,4 @@
----
-layout: default
-title: Scripts Library
-nav_order: 3
-has_children: false
-permalink: /scripts/
----
-
 # Scripts Library
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
 
 This page contains ready-to-use scripts for the Euler cluster container workflow.
 
