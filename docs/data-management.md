@@ -79,6 +79,19 @@ Whenever you run a compute job, you can also ask for a certain amount of local s
 
 ---
 
+## 🧪 Test Scripts
+
+To verify your storage setup and check quotas:
+
+- **[test_storage_quotas.sh](scripts/tests/data-management/test_storage_quotas.sh)** - Checks all storage paths, quotas, and creates missing directories
+
+Submit as a job to test `$TMPDIR`:
+```bash
+sbatch test_storage_quotas.sh
+```
+
+---
+
 ## 💡 Best Practices
 
 1. **Use the right storage for the right purpose** - Don't waste home directory space on large files

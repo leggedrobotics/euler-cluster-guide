@@ -375,6 +375,25 @@ python analyze_results.py --results-dir /cluster/project/rsl/$USER/results/<job_
 
 ---
 
+## 🧪 Test Scripts
+
+We provide complete test scripts to verify the ML workflow:
+
+- **[fake_train.py](scripts/tests/python-environments/fake_train.py)** - Simulated ML training script for testing
+- **[test_full_training_job.sh](scripts/tests/python-environments/test_full_training_job.sh)** - Complete ML training job test
+
+To test the full workflow:
+```bash
+# Copy scripts to your project
+cp fake_train.py /cluster/home/$USER/
+cp test_full_training_job.sh /cluster/home/$USER/
+
+# Submit the test job
+sbatch test_full_training_job.sh
+```
+
+---
+
 ## 📝 Sample Training Script
 
 For a complete training script example with all features (checkpointing, logging, etc.), see the [Computing Guide](computing-guide.md) or download our template from the [Scripts Library](scripts.md).
