@@ -27,15 +27,15 @@ Effective data management is critical when working on the Euler Cluster, particu
 ## 📦 Project Directory (`/cluster/project/rsl/$USER`)
 
 - **Quota**: ≤ 75 GB  
-- **Inodes**: ~300,000  
+- **Inodes**: ~2.5 M  
 - **Use Case**: Conda environments, software packages
 
 ---
 
 ## 📂 Work Directory (`/cluster/work/rsl/$USER`)
 
-- **Quota**: ≤ 150 GB  
-- **Inodes**: ~30,000  
+- **Quota**: ≤ 200 GB  
+- **Inodes**: ~50,000  
 - **Use Case**: Saving results, large output files, tar files, singularity images. Avoid storing too many small files.
 
 > In exceptional cases we can approve more storage space. For this, ask your supervisor to contact `patelm@ethz.ch`.
@@ -73,8 +73,8 @@ Whenever you run a compute job, you can also ask for a certain amount of local s
 |----------------------------|------------|----------------|--------|----------------------------------------------------|
 | `/cluster/home/$USER`      | ~450,000   | 45 GB          |      No     | Code, config, small files                          |
 | `/cluster/scratch/$USER`   | 1 M    | 2.5 TB             |      Yes (older than 15 days)    | Datasets, training data, temporary usage           |
-| `/cluster/project/rsl/$USER`     | 300,000    | 75 GB    |      No     | Conda envs, software packages             |
-| `/cluster/work/rsl/$USER`        | 30,000     | 150 GB   |      No     | Large result files, model checkpoints, Singularity containers,             |
+| `/cluster/project/rsl/$USER`     | 2.5 M    | 75 GB    |      No     | Conda envs, software packages             |
+| `/cluster/work/rsl/$USER`        | 50,000     | 200 GB   |      No     | Large result files, model checkpoints, Singularity containers,             |
 | `$TMPDIR`        | very high     | Upto 800 GB   |      Yes (at end of job)     |     Training Datasets, Singularity Images         |
 
 ---
